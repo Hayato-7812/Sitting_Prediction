@@ -50,7 +50,3 @@ python train_model.py
 ```sh
 python evaluate_model.py
 ```
-
-## ライセンス
-
-このプロジェクトはMITライセンスの下で公開されています。詳細はLICENSEファイルを参照してください。
