@@ -17,20 +17,15 @@ def prepare_dataset(data):
     for item in tqdm(data, desc="Preparing Dataset"):
         keypoints = item['keypoints']
         keypoints_flatten = []
-        for key in [
-            "nose", "left_eye", "right_eye", "left_ear", "right_ear",
-            "left_shoulder", "right_shoulder", "left_elbow", "right_elbow",
-            "left_wrist", "right_wrist", "left_hip", "right_hip",
-            "left_knee", "right_knee", "left_ankle", "right_ankle"
-        ]:
-            keypoints_flatten.extend(keypoints[key])
+        for point in keypoints:
+            keypoints_flatten.extend(point[:2])  # x, y 座標のみを使用
         X.append(keypoints_flatten)
         y.append(0 if item['label'] == 'sitting' else 1)  # 'sitting' -> 0, 'standing' -> 1
     return np.array(X), np.array(y)
 
 if __name__ == "__main__":
-    input_file = './coco/preprocessed_data.json'
-    model_output_file = './coco/svm_model.pkl'
+    input_file = './coco/rule_based_preprocessed_data.json'
+    model_output_file = './coco/svm_model2.pkl'
 
     data = load_preprocessed_data(input_file)
     X, y = prepare_dataset(data)
