@@ -52,8 +52,8 @@ def visualize_pose(person_data, ax):
     actual_label = person_data['label']
     correctness = "Correct" if predicted_label == actual_label else "Incorrect"
     
-    ax.set_xlim(0, 640)
-    ax.set_ylim(0, 480)
+    ax.set_xlim(0, 200)
+    ax.set_ylim(0, 400)
     ax.set_aspect('equal')
     ax.invert_yaxis()
     ax.set_title(f"Predicted: {predicted_label}\nActual: {actual_label}\n{correctness}", fontsize=10)
@@ -70,7 +70,7 @@ def visualize_poses(data):
     plt.show()
 
 if __name__ == "__main__":
-    input_file = './sample.json'
+    input_file = 'machime_learning_based/demo.json'
     model_file = './coco/svm_model2.pkl'
 
     data = load_preprocessed_data(input_file)
